@@ -7,7 +7,9 @@ import os
 import os.path
 
 from modules import shared, sd_models, errors
+from modules.shared import opts, state, sd_model
 
+sd_model=shared.sd_model
 
 MAX_TAB_COUNT = shared.opts.data.get("lora_masks_number_of_tabs", 4)
 LORA_MODEL_EXTS = [".pt", ".ckpt", ".safetensors"]
@@ -56,9 +58,9 @@ def list_available_loras():
     forbidden_lora_aliases.clear()
     forbidden_lora_aliases.update({"none": 1})
 
-    os.makedirs(shared.cmd_opts.lora_dir, exist_ok=True)
+    os.makedirs(shared.opts.lora_dir, exist_ok=True)
 
-    candidates = list(shared.walk_files(shared.cmd_opts.lora_dir,
+    candidates = list(shared.walk_files(shared.opts.lora_dir,
                       allowed_extensions=[".pt", ".ckpt", ".safetensors"]))
     for filename in sorted(candidates, key=str.lower):
         if os.path.isdir(filename):
