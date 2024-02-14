@@ -10,7 +10,8 @@ import torch
 import numpy as np
 
 import modules.scripts as scripts
-from modules import shared, script_callbacks
+from modules import shared, sd_models, script_callbacks
+
 import gradio as gr
 
 from modules.ui_components import FormRow
